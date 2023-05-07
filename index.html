@@ -436,6 +436,7 @@
                       let userNameString=inputUserName.toLowerCase().replace(/\s/g, '+');
                           db.collection('delivery').doc(userNameString).set({  
                             "name":userNameString,
+                            "id":Math.random() * 100,
                             "whatsapp":inpuMWhats,
                             orders:recebePedidos  //<==================Pedidos Recebidos
                       }) 
@@ -516,6 +517,7 @@
              
               db.collection('delivery').doc(userNameString).set({  
                 "name":userNameString,
+                "id":Math.random() * 100, 
                 "whatsapp":inpuMWhats,
                 orders:allordersBuy  //<==================Pedidos Recebidos
               }) 
