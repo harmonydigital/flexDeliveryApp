@@ -8,7 +8,7 @@ STATUSMESA=false
 
 JSON.parse(localStorage.getItem("cardapio")).map((cardBdmap)=>{
     cardBdmap.data.map((allDataBd)=>{
-        console.log(allDataBd)
+       
         data.push(allDataBd)
     })
 })
@@ -270,7 +270,8 @@ JSON.parse(localStorage.getItem("cardapio")).map((cardBdmap)=>{
             
             atualOrder=[laslastorder,{ 
                 idPedido:Math.random() * 1000,
-                itens:prodsSelct
+                itens:prodsSelct,
+                observacao:'observacoes'
             }]
 
 
@@ -278,9 +279,12 @@ JSON.parse(localStorage.getItem("cardapio")).map((cardBdmap)=>{
      
     
         }else{ 
+            obs='Nenhuma obs'
             allordersBuy=[{ 
                 idPedido:Math.floor(Math.random() * 1000).toString(),
-                itens:prodsSelct
+                itens:prodsSelct,
+                observacao:obs
+
             }]
         }
 

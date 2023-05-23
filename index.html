@@ -298,8 +298,15 @@
               //<==================Pedidos Mesas
               db.collection('mesasOpen').doc(intMesaValue).set({  
                 mesa:intMesaValue,
-                orders:recebePedidos  //<==================Pedidos Recebidos
+                orders:recebePedidos,  //<==================Pedidos Recebidos
+                
               })
+
+              // console.log({  
+              //   mesa:intMesaValue,
+              //   orders:recebePedidos,  //<==================Pedidos Recebidos
+                
+              // })
 
           
 
@@ -319,15 +326,11 @@
                         baseMap.orders.map((mapOrders)=>{ 
                             idspedidosRecebidos.push(mapOrders.idPedido) 
                            
-                            pedidoAtual.map((mapIdAtual)=>{
-                                // console.log('idAtual',mapIdAtual)
-                                idspedidosRecebidos.map((recebidosMap)=>{
-                                  // console.log('idAtual',recebidosMap)
+                            pedidoAtual.map((mapIdAtual)=>{ 
+                                idspedidosRecebidos.map((recebidosMap)=>{ 
                                   
                                       if(recebidosMap===mapIdAtual){
-                                        entregaPed=true
-                                        console.log(recebidosMap)  
-                                        //  alert(recebidosMap)
+                                        entregaPed=true 
                                       }else{
                                   
                                       entregaPed=false
@@ -371,7 +374,7 @@
                               + " *Total da Compra*: " + "%0a"
                               + totalCart.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}) + "%0a" // Mensagem personalizada
                            
-                            window.location.href=url;
+                            // window.location.href=url;
 
                   }, 2000);
                   form.reset() 
@@ -490,7 +493,7 @@
                                     + "%0a"  
                                     + " *Total da Compra*: " + "%0a"
                                     + totalCart.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}) + "%0a" // Mensagem personalizada
-                                  console.log(url)
+                                  
                                     // window.location.href=url;
                                     
 
@@ -571,7 +574,7 @@
         }); 
 
         localStorage.setItem("cardapio",JSON.stringify(cardapiobd))
-         console.log(cardapiobd)
+       
     }, (error) => {
             console.log('Erro Notificações')
 

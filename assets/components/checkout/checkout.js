@@ -22,16 +22,23 @@ getCheckout=()=>{
     observacaoPedido='Nenhuma observação'
     retiradavalue=0
 
-
     
 
     areaObs.addEventListener('change', function(event){
-        console.log(event.target.value)
+        
         observacaoPedido=event.target.value
+        obs=observacaoPedido
         obsData={'observacaoPedido':observacaoPedido}
-    
-        prodsSelct.push(obsData) 
+        // allordersBuy.push(obsData)
+        console.log(obs)
 
+        // prodsSelct.push(obsData) 
+        allordersBuy=[{ 
+            idPedido:Math.floor(Math.random() * 1000).toString(),
+            itens:prodsSelct,
+            observacao:obs
+
+        }]
 
     })
  
