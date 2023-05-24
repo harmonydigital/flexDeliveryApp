@@ -436,7 +436,7 @@
                             recebePedidos.push(atualOrderMap)
                       })
 
-                      let userNameString=inputUserName.toLowerCase().replace(/\s/g, '+');
+                      let userNameString=inputUserName.toLowerCase().replace(/\s/g, '');
                           db.collection('delivery').doc(userNameString).set({  
                             "name":userNameString,
                             "id":Math.random() * 100,
