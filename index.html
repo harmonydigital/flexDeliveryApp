@@ -316,9 +316,15 @@
                 hora:horaAtual
               }) 
          
-
               setTimeout(function(){
-                  // location.reload()
+                                  alert('Seu pedido foi entregue ao restaurante')
+
+                                  setTimeout(function(){
+                                    location.reload() 
+                                  }, 3000);
+ 
+                                 }, 2000);
+              setTimeout(function(){
               
                  databaseMesas.map((baseMap)=>{ 
                  if(baseMap.mesa==intMesaValue){ //VERIFICA EXISTENCIA  
@@ -390,25 +396,9 @@
 
               }, 3000);
 
-
-
-
-
-
-
-              
-              // db.collection('notificacoes').doc(horaReplace).set({  
-              //   mesa:parseInt(inpuMVaue),
-              //   orders:allordersBuy,  //<==================Pedidos Recebidos
-              //   hora:horaAtual
-              // }) 
-         
-              // alert('Pedido Enviado ao Restaurante')  
-
+ 
      
-              setTimeout(function(){
-                  // location.reload()
-              }, 2000);
+            
 
       }else if(inpuMWhats!="") {
         
@@ -475,7 +465,17 @@
                               console.log("atualID",atuaIdOrder)
 
                               if(atuaIdOrder.idPedido===mapOrdersDelivery.idPedido){
-                                alert('Seu pedido foi entregue ao restaurante')
+
+
+                                setTimeout(function(){
+                                  alert('Seu pedido foi entregue ao restaurante')
+
+                                  setTimeout(function(){
+                                    location.reload() 
+                                  }, 3000);
+ 
+                                 }, 2000);
+
                                 setTimeout(function(){ 
                                   // location.reload()
                                   var url = "https://wa.me/5512997794949?text=" // Seu numero
@@ -512,7 +512,11 @@
                           })
                         })
                       }, 2000);
-                   
+
+
+                      setTimeout(function(){ 
+
+                      }, 2000);
                     
 
                       
@@ -557,10 +561,12 @@
  
 
                       if(atuaIdOrder.idPedido===mapOrdersDelivery.idPedido){
-                        alert('Seu pedido foi entregue ao restaurante')
-                        setTimeout(function(){ 
-                          // location.reload()
+                        setTimeout(function(){
+                                  alert('Seu pedido foi entregue ao restaurante')
 
+                                  setTimeout(function(){
+                                    location.reload() 
+                                  }, 3000);
                         }, 2000);
                       }
 
