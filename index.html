@@ -288,8 +288,7 @@
                 })
               
               allordersBuy.map((atualOrderMap)=>{
-                recebePedidos.push(atualOrderMap)
-                 //console.log(atualOrderMap.idPedido)id pedido Atual
+                recebePedidos.push(atualOrderMap) 
                 pedidoAtual.push(atualOrderMap.idPedido) 
 
               })     
@@ -302,11 +301,11 @@
                 
               })
 
-              // console.log({  
-              //   mesa:intMesaValue,
-              //   orders:recebePedidos,  //<==================Pedidos Recebidos
+              console.log({  
+                mesa:intMesaValue,
+                orders:recebePedidos,  //<==================Pedidos Recebidos
                 
-              // })
+              })
 
           
 
@@ -437,7 +436,14 @@
                       })
 
                       let userNameString=inputUserName.toLowerCase().replace(/\s/g, '');
-                          db.collection('delivery').doc(userNameString).set({  
+
+                      console.log({  
+                            "name":userNameString,
+                            "id":Math.random() * 100,
+                            "whatsapp":inpuMWhats,
+                            orders:recebePedidos  //<==================Pedidos Recebidos
+                      })
+                      db.collection('delivery').doc(userNameString).set({  
                             "name":userNameString,
                             "id":Math.random() * 100,
                             "whatsapp":inpuMWhats,
@@ -516,8 +522,8 @@
 
         }else{ 
 
-              let userNameString=inputUserName.toLowerCase().replace(/\s/g, '+');
-             
+              let userNameString=inputUserName.toLowerCase().replace(/\s/g, '');
+              
               db.collection('delivery').doc(userNameString).set({  
                 "name":userNameString,
                 "id":Math.random() * 100, 
@@ -525,6 +531,12 @@
                 orders:allordersBuy  //<==================Pedidos Recebidos
               }) 
 
+              console.log('Primeira Compra',{  
+                "name":userNameString,
+                "id":Math.random() * 100, 
+                "whatsapp":inpuMWhats,
+                orders:allordersBuy  //<==================Pedidos Recebidos
+              })
               const horaAtual=relogio()
               
               db.collection('notificacoes').doc(horaReplace).set({  

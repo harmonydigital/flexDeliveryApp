@@ -27,6 +27,9 @@
     justify-content: center;
     align-items: center;
 }
+.quantidade input {
+    pointer-events: none;
+}
 .produto .prod-val .title-prod {
     color: #E5040E;
     margin: 0px;

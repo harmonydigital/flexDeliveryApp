@@ -4,6 +4,8 @@ totalfinesh=document.getElementById("totalfinesh")
 inpuMMesa=document.getElementById('inputMesa')
 whatsappId=document.getElementById('whatsappId')
 inpuMWhats="" 
+
+console.log('checkout',relogio())
 function showNumber(){
 
     var n=100;
@@ -33,15 +35,17 @@ getCheckout=()=>{
         console.log(obs)
 
         // prodsSelct.push(obsData) 
-        allordersBuy=[{ 
-            idPedido:Math.floor(Math.random() * 1000).toString(),
-            itens:prodsSelct,
-            observacao:obs
-
-        }]
+      
 
     })
- 
+    allordersBuy=[{ 
+        idPedido:Math.floor(Math.random() * 1000).toString(),
+        data:dataHora(),
+        hora:relogio(),
+        itens:prodsSelct,
+        observacao:obs
+
+    }]
     // VALIDA CAMPO HOME
     if(text=="Mesa"){
         mesaCheck=document.getElementById('selectMesaCheckout')
@@ -67,6 +71,8 @@ formaRetirada=()=>{
     retiradavalue=document.getElementById('selectCheckout').value
     setMesa=document.getElementById('setMesa') 
     clickpague=document.getElementById('clickpague')
+
+
     if(retiradavalue=='mesa'){
         setMesa.style.cssText="display:flex"   
         whatsappId.style.cssText="display:none"  
@@ -76,8 +82,7 @@ formaRetirada=()=>{
 
         setMesa.style.cssText="display:none"  
         whatsappId.style.cssText="display:block"  
-        clickpague.style.cssText="display:block"  
- 
+        clickpague.style.cssText="display:block"   
         inpuMVaue=0
     }
 
