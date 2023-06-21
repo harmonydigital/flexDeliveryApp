@@ -72,11 +72,14 @@ button.tablinks .img2 {
 
 /* Create an active/current tablink class */
 .tab button.active {
-  background-color: #ff253a;
-  color: white;
+  background-color: #FED30A;
+  color: black;
   font-weight: 700;
-  box-shadow: inset 3px 2px 5px #eb1f33;
+  box-shadow: inset 3px 2px 5px #FED30A;
 
+}
+.categories .tab button {
+  font-size: 1.1rem;
 }
 .tab.sub button.active {
   background-color: transparent;
@@ -100,7 +103,7 @@ padding: 0 ;
   
   display: flex;
   justify-content: center;
-  /* margin: 0 5px; */
-
-  /* width: auto !important; */
+  
+    min-width: 180px !important;
+ 
 }

@@ -1,22 +1,72 @@
+
  
-data=[] 
+fullScreen=()=>{
+    var element = document.documentElement;
+    
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+    } else if (element.mozRequestFullScreen) {
+        element.mozRequestFullScreen();
+    } else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen();
+    } else if (element.msRequestFullscreen) {
+        element.msRequestFullscreen();
+    }
+} 
+
+ 
+data=[]  
 database=[]  
  
 var apiContainer=document.getElementById('api') 
 var categoriesContainer=document.getElementById('categories') 
 STATUSMESA=false
 
-JSON.parse(localStorage.getItem("cardapio")).map((cardBdmap)=>{
-    cardBdmap.data.map((allDataBd)=>{
+// JSON.parse(localStorage.getItem("cardapio")).map((cardBdmap)=>{
+//     cardBdmap.data.map((allDataBd)=>{
        
-        data.push(allDataBd)
-    })
-})
- getApi=(container)=>{
+//         data.push(allDataBd)
+//     })
+// })
+
+
+ getApi=(container, databd)=>{
+
     container.innerHTML =` <div class="tab"> </div>`;
     prods=""
+    getdatabd=databd
+  
+    if(data.length==0){
+        getdatabd.map((databdMap)=>{
+       
+            databdMap.dataProd.map((mapProd)=>{
+              data.push(mapProd)
+      
+              
+            })
+          //   console.log(data)
+      
+          })
+    }else{
+        data=[]
+        getdatabd.map((databdMap)=>{
+       
+            databdMap.dataProd.map((mapProd)=>{
+              data.push(mapProd)
+      
+              
+            })
+          //   console.log(data)
+      
+          })
+
+    }
  
-    
+   
+     
+
+
+ 
     data.map((apiData)=>{ 
          
         container.childNodes[1].innerHTML += ` 
@@ -76,7 +126,7 @@ JSON.parse(localStorage.getItem("cardapio")).map((cardBdmap)=>{
                                 <img src="`+productsMap.img +`" alt="" ></img>
                             <div class="prod-val">
                                 <h3 class="title-prod">`+productsMap.name +`</h3> 
-                                <span class="valor">`+productsMap.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+`</span>
+                                <span class="valor">`+parseFloat(productsMap.price).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+`</span>
                             </div>
                             <div class="quantidade">
                                 <button key="`+productsMap.id +`" onclick="addProd(this,`+productsMap.id +`); ">+</button>
@@ -97,9 +147,10 @@ JSON.parse(localStorage.getItem("cardapio")).map((cardBdmap)=>{
                 }) 
         }) 
      }) 
+     openTable()
  }
   
- categoriesContainer ? getApi(categoriesContainer) : console.log("..");
+//  categoriesContainer ? getApi(categoriesContainer) : console.log("..");
 
 
  var value = 0
@@ -181,13 +232,17 @@ JSON.parse(localStorage.getItem("cardapio")).map((cardBdmap)=>{
   itensTotal=0
   list=null
 
-   cartPreview.innerHTML= `<div><button id="cartPreview" onclick="showCart()"><img src="assets/images/shopping-cart.png" alt=""></button>      </div>`;  
+   cartPreview.innerHTML= `<div><button id="cartPreview" onclick="showCart()">
+   <i class="fa-solid fa-cart-shopping"></i>
+   </button>   
+      </div>`;  
    cartContainer.innerHTML= `<div class="content"><h2>Pedido</h2><p ><span id="itensTotal"></span>  Itens na Cesta</p></div>`;  
-   msg="Olá, Pedido via APP Canoas" + "%0a" + "Nome: "+inputUserName
+   msg="Olá, Pedido via APP " + "%0a" + "Nome: "+inputUserName
    retirada="";
 
+   
     //  url = "https://wa.me/5512982969703?text=" // Seu numero test
-     url = "https://wa.me/551296218661?text=" // Seu numero Produção
+     url = "https://wa.me/5512996048083?text=" // Seu numero Produção
    + "*Pedido via APP* <3" + "%0a" // Mensagem personalizada
    + "%0a" // Quebra de linhas
    + "*Nome*: " + inputUserName + "%0a" // Dados do formulário
@@ -217,7 +272,8 @@ JSON.parse(localStorage.getItem("cardapio")).map((cardBdmap)=>{
 
                 
             
-                    cartPreview.innerHTML= `    <div >     <button id="cartPreview" onclick="showCart()"><img src="assets/images/shopping-cart.png" alt=""></button> <span class="qtdIcon">`+cartQtd +` </span>   </div>  `;  
+                    cartPreview.innerHTML= `    <div >     <button id="cartPreview" onclick="showCart()">
+                    <i class="fa-solid fa-cart-shopping"></i></button> <span class="qtdIcon">`+cartQtd +` </span>   </div>  `;  
                     cartContainer.innerHTML+= `  
                     
                     <div class="produto">
@@ -328,7 +384,9 @@ JSON.parse(localStorage.getItem("cardapio")).map((cardBdmap)=>{
     ">CHAVE </br>  12996218661 </span>
            </div>
         
-             <button type="submit" id="submitCheck">ENVIAR MEU PEDIDO </button>
+             <button type="submit" id="submitCheck">ENVIAR MEU PEDIDO 
+             <i class="fa-solid fa-paper-plane"></i>
+             </button>
         </div> 
         `;
   }
@@ -372,10 +430,27 @@ closeCheckout=()=>{
 
     ///update
    
+openTable=()=>{
+    setTimeout(function(){
 
-  tabcontent = document.getElementsByClassName("tabcontent");
-  tablinks = document.getElementsByClassName("tablinks");
-  tabcontent[0].style.cssText="display:block"
-  tabcontent[1].style.cssText="display:block"
-  tablinks[0].setAttribute("class", "tablinks active")
-  
+        tabcontent = document.getElementsByClassName("tabcontent");
+        tablinks = document.getElementsByClassName("tablinks");
+        tabcontent[0].style.cssText="display:block"
+        tabcontent[1].style.cssText="display:block"
+        tablinks[0].setAttribute("class", "tablinks active")
+        var swiper = new Swiper(".mySwiperTabs", {
+            slidesPerView: 2,
+            cssMode: true,
+             autoplay: {
+            delay: 5500,
+            disableOnInteraction: false,
+            },
+            
+            });
+    
+        
+    
+    
+    
+    }, 2000);
+}
