@@ -344,6 +344,13 @@
                 
               })
 
+              //<==================Pedidos Mesas
+              db.collection('backstage').doc(intMesaValue).set({  
+                mesa:intMesaValue,
+                orders:recebePedidos,  //<==================Pedidos Recebidos
+                
+              })
+
               
               db.collection('notificacoes').doc(horaReplace).set({  
                 mesa:intMesaValue,
@@ -525,7 +532,15 @@
                                 "id":idClient,
                                 "whatsapp":inpuMWhats,
                                 orders:recebePedidos   
-                          }) 
+                          })
+                          
+                           // ENVIA PEDIDO DELIVERY
+                           db.collection('backstage').doc(idClient).set({  
+                                "name":userNameString,
+                                "id":idClient,
+                                "whatsapp":inpuMWhats,
+                                orders:recebePedidos   
+                          })
 
                           // ENVIA NOTIFICACAO DELIVERY
                           db.collection('notificacoes').doc(horaReplace).set({  
@@ -600,13 +615,22 @@
 
               let userNameString=inputUserName.toLowerCase().replace(/\s/g, '');
               let idClient=localStorage.getItem("idClient");
+
               db.collection('delivery').doc(idClient).set({  
                 "name":userNameString,
                 "id":idClient, 
                 "whatsapp":inpuMWhats, 
                 orders:allordersBuy  //<==================Pedidos Recebidos
                 
-              })  
+              })
+              
+              db.collection('backstage').doc(idClient).set({  
+                "name":userNameString,
+                "id":idClient, 
+                "whatsapp":inpuMWhats, 
+                orders:allordersBuy  //<==================Pedidos Recebidos
+                
+              })
  
               const horaAtual=relogio()
               
